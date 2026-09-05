@@ -24,10 +24,7 @@ const studentOptions = `
 
 const staffOptions = `
   <option>교수</option>
-  <option>감독</option>
-  <option>수석 코치</option>
   <option>코치</option>
-  <option>행정직</option>
 `;
 
 btnStudent.addEventListener("click", () => {
@@ -91,12 +88,10 @@ photoInput.addEventListener("change",()=>{
   const reader = new FileReader();
 
   reader.onload = e => {
-
-    const img = document.getElementById("photoPreview");
-    const box = img.parentElement;
-
-    img.src = e.target.result;
-    img.style.display = "block";
+    
+    // img 태그 대신 CSS 배경 이미지로 설정하여 다운로드 시 비율 유지 및 오류 방지
+    const box = document.getElementById("photoBox");
+    box.style.backgroundImage = `url("${e.target.result}")`;
     box.classList.remove("empty");
 
   };
