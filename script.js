@@ -4,6 +4,64 @@ const sportInput = document.getElementById("sport");
 const messageInput = document.getElementById("message");
 const photoInput = document.getElementById("photo");
 
+const btnStudent = document.getElementById("btnStudent");
+const btnStaff = document.getElementById("btnStaff");
+const card = document.getElementById("card");
+const cardSubtitle = document.getElementById("cardSubtitle");
+const formSportLabel = document.getElementById("formSportLabel");
+const cardSportLabel = document.getElementById("cardSportLabel");
+const downloadBtn = document.getElementById("downloadBtn");
+
+let isStaff = false;
+
+const studentOptions = `
+  <option>하키</option>
+  <option>농구</option>
+  <option>야구</option>
+  <option>사격</option>
+  <option>피겨스케이팅</option>
+`;
+
+const staffOptions = `
+  <option>교수</option>
+  <option>감독</option>
+  <option>수석 코치</option>
+  <option>코치</option>
+  <option>행정직</option>
+`;
+
+btnStudent.addEventListener("click", () => {
+  isStaff = false;
+  btnStudent.classList.add("active");
+  btnStaff.classList.remove("active");
+  
+  card.classList.remove("staff");
+  downloadBtn.classList.remove("staff-btn");
+  
+  cardSubtitle.textContent = "STUDENT IDENTITY CARD";
+  formSportLabel.textContent = "종목";
+  cardSportLabel.textContent = "SPORT";
+  
+  sportInput.innerHTML = studentOptions;
+  document.getElementById("cardSport").textContent = sportInput.value;
+});
+
+btnStaff.addEventListener("click", () => {
+  isStaff = true;
+  btnStaff.classList.add("active");
+  btnStudent.classList.remove("active");
+  
+  card.classList.add("staff");
+  downloadBtn.classList.add("staff-btn");
+  
+  cardSubtitle.textContent = "STAFF IDENTITY CARD";
+  formSportLabel.textContent = "직책/담당";
+  cardSportLabel.textContent = "ROLE";
+  
+  sportInput.innerHTML = staffOptions;
+  document.getElementById("cardSport").textContent = sportInput.value;
+});
+
 nameInput.addEventListener("input",()=>{
   document.getElementById("cardName").textContent =
     nameInput.value || "YOUR NAME";
@@ -48,18 +106,20 @@ photoInput.addEventListener("change",()=>{
 
 async function downloadCard(){
 
-  const card = document.getElementById("card");
+  const cardElement = document.getElementById("card");
 
-  const canvas = await html2canvas(card,{
+  const canvas = await html2canvas(cardElement,{
     scale:3,
-    backgroundColor:null
+    backgroundColor:null,
+    width: cardElement.offsetWidth,
+    height: cardElement.offsetHeight
   });
 
   const link = document.createElement("a");
 
-  const filename =
-    (nameInput.value || "winterridge_student_card")
-    + "_student_card.png";
+  const defaultPrefix = nameInput.value || (isStaff ? "winterridge_staff" : "winterridge_student");
+  const filenameSuffix = isStaff ? "_staff_card.png" : "_student_card.png";
+  const filename = defaultPrefix + filenameSuffix;
 
   link.download = filename;
   link.href = canvas.toDataURL("image/png");
