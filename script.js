@@ -89,9 +89,11 @@ photoInput.addEventListener("change",()=>{
 
   reader.onload = e => {
     
-    // img 태그 대신 CSS 배경 이미지로 설정하여 다운로드 시 비율 유지 및 오류 방지
+    const img = document.getElementById("photoPreview");
     const box = document.getElementById("photoBox");
-    box.style.backgroundImage = `url("${e.target.result}")`;
+    
+    img.src = e.target.result;
+    img.style.display = "block";
     box.classList.remove("empty");
 
   };
@@ -106,6 +108,7 @@ async function downloadCard(){
   const canvas = await html2canvas(cardElement,{
     scale:3,
     backgroundColor:null,
+    useCORS:true,
     width: cardElement.offsetWidth,
     height: cardElement.offsetHeight
   });
