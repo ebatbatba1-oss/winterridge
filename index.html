@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Winterridge Student Card</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="wrap">
+
+  <!-- 학생증 -->
+  <div class="card" id="card">
+
+    <div class="deco"></div>
+
+    <div class="header">
+      <div class="university">WINTERRIDGE UNIVERSITY</div>
+      <div class="subtitle">STUDENT IDENTITY CARD</div>
+      <div class="line"></div>
+    </div>
+
+    <div class="photo empty">
+      <img id="photoPreview">
+    </div>
+
+    <div class="info">
+
+      <div class="label">NAME</div>
+      <div class="name" id="cardName">YOUR NAME</div>
+
+      <div class="row">
+
+        <div class="infoBox">
+          <div class="label">AGE</div>
+          <div class="value" id="cardAge">21</div>
+        </div>
+
+        <div class="infoBox">
+          <div class="label">SPORT</div>
+          <div class="sport" id="cardSport">하키</div>
+        </div>
+
+      </div>
+
+      <div class="message" id="cardMessage">
+        YOUR MESSAGE
+      </div>
+
+    </div>
+
+    <div class="footer">
+      <span>WINTERRIDGE ICEBREAKERS</span>
+      <span>FICTIONAL</span>
+    </div>
+
+  </div>
+
+  <!-- 입력창 -->
+  <div class="form">
+
+    <label>
+      이름
+      <input id="name" placeholder="이름 입력">
+    </label>
+
+    <label>
+      나이
+      <input id="age" type="number" min="18" max="99" value="21">
+    </label>
+
+    <label>
+      종목
+      <select id="sport">
+        <option>하키</option>
+        <option>농구</option>
+        <option>야구</option>
+        <option>사격</option>
+        <option>피겨스케이팅</option>
+      </select>
+    </label>
+
+    <label>
+      한마디
+      <textarea id="message"
+        placeholder="학생증에 들어갈 한마디"></textarea>
+    </label>
+
+    <label>
+      사진
+      <input id="photo" type="file" accept="image/*">
+    </label>
+
+    <button onclick="downloadCard()">
+      학생증 이미지 다운로드
+    </button>
+
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
