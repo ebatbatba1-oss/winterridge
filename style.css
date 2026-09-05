@@ -101,21 +101,17 @@ body{
 .photo{
   position:relative;
   z-index:2;
-  width:100%;
-  height:280px;
+  width:260px;
+  height:260px;
+  margin:0 auto 22px auto;
   overflow:hidden;
-  margin-bottom:22px;
   border-radius:18px;
-  background:#e8f5fa;
+  background-color:#e8f5fa;
   border:1px solid #d5ebf3;
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
   transition: all 0.3s ease;
-}
-
-.photo img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:none;
 }
 
 .photo.empty::before{
@@ -219,7 +215,7 @@ body{
 }
 .card.staff .subtitle { color: #64748b; }
 .card.staff .line { background: linear-gradient(90deg,#475569,transparent); }
-.card.staff .photo { background: #f8fafc; border-color: #e2e8f0; }
+.card.staff .photo { background-color: #f8fafc; border-color: #e2e8f0; }
 .card.staff .photo.empty::before { color: #94a3b8; }
 .card.staff .label { color: #64748b; }
 .card.staff .sport {
